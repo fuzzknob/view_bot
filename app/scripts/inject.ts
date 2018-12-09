@@ -28,6 +28,7 @@ class Main {
 
     private handleAd(): void {
 
+
     }
 
     public initialize(): void {

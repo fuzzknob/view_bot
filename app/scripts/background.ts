@@ -1,1 +1,1 @@
-console.log('this is to dong')
+console.log('This is a sample background file!')
