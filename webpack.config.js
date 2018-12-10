@@ -47,7 +47,8 @@ module.exports = {
     resolve: {
         modules: [path.resolve('./node_modules')],
         alias: {
-            '@libs': path.resolve(__dirname, 'app/libs')
+            '@libs': path.resolve(__dirname, 'app/libs'),
+            '@interface': path.resolve(__dirname, 'app/interface')
         },
         extensions: ['.ts', '.js', '.json']
     },
