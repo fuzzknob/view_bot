@@ -1,4 +1,9 @@
 import Util from '@libs/Utils'
+import Event from '@libs/Event'
+
+import Counter from '@interface/Counter'
+
+const $event = new Event('inject')
 
 class Viewer {
 
@@ -9,11 +14,6 @@ class Viewer {
 
     constructor() {
         this.video = <HTMLVideoElement>Util.select('.html5-main-video')
-        console.log('inside constructor')
-        this.video.addEventListener('ended', () => {
-            this.videoEnd()
-        })
-
         if (!this.video.duration)
             this.video.addEventListener('loadedmetadata', () => this.initialize())
         else
@@ -65,7 +65,11 @@ class Viewer {
 
     public videoEnd(): void {
         if (!this.isAdRunning) {
-            console.log('page reload')
+            let data: Counter = {
+                id: (window.location.search).replace('?v=', ''),
+                name: Util.select('title').innerText
+            }
+            $event.emit('increase-counter', data)
             location.reload(true)
         }
     }
