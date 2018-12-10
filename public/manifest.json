@@ -23,5 +23,8 @@
     "content_scripts": [{
         "matches": ["https://www.youtube.com/watch?v=*"],
         "js": ["/scripts/inject.js"]
-    }]
+    }],
+    "permissions": [
+        "tabs"
+    ]
 }
