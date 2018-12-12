@@ -6,7 +6,6 @@ import Counter from '@interface/Counter'
 const $event = new Event('inject')
 
 class Viewer {
-
     private video: HTMLVideoElement
     private videoDuration: number
     private isAsia: boolean
@@ -14,6 +13,11 @@ class Viewer {
 
     constructor() {
         this.video = <HTMLVideoElement>Util.select('.html5-main-video')
+
+        if (!this.video) {
+            return
+        }
+
         if (!this.video.duration)
             this.video.addEventListener('loadedmetadata', () => this.initialize())
         else
@@ -49,6 +53,7 @@ class Viewer {
     }
 
     public initialize(): void {
+        console.log('Initialized')
         this.videoDuration = this.video.duration
         if (this.checkAd()) {
             this.handleAd()
@@ -70,5 +75,9 @@ class Viewer {
     }
 
 }
+let viewer = null
 
-new Viewer()
+$event.on('page-load', () => {
+    console.log('loaded')
+    viewer = new Viewer()
+})

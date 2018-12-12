@@ -11,3 +11,9 @@ $event.on('increase-counter', (data:Counter) => {
         counter: (lastCount + 1)
     }))
 })
+
+chrome.tabs.onUpdated.addListener((id, info) => {
+    if (info.status === 'complete') {
+        $event.emit('page-load', null, {tabId: id})
+    }
+})
