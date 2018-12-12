@@ -1,7 +1,6 @@
 import Options from '@interface/Option'
 import Message from '@interface/Message'
 
-
 interface Handlers {
     [key: string]: Function
 }
