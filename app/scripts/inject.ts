@@ -37,11 +37,8 @@ class Viewer {
     private handleAd(): void {
         let button = Util.select(this.isAsia ? '.ytp-ad-skip-button' : '.videoAdUiSkipButton')
         this.isAdRunning = true
-        console.log('video duration', this.videoDuration)
         setTimeout(() => {
-            console.log('inside ad timeout', button)
             if (button && this.videoDuration > 15) {
-                console.log('perform-click')
                 Util.performClick(button)
             }
             setTimeout(() => {
@@ -52,10 +49,8 @@ class Viewer {
     }
 
     public initialize(): void {
-        console.log('Initialize')
         this.videoDuration = this.video.duration
         if (this.checkAd()) {
-            console.log('Found Ad.')
             this.handleAd()
         }
         this.video.addEventListener('ended', () => {
